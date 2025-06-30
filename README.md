@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Webhook Demo (Next.js)
+
+This is a simple Next.js demo app that shows how to send user input to an API route, process it on the server, and display the processed result on the UI. It also demonstrates how to forward the data to an external webhook endpoint.
+
+## Features
+
+- Collects user input (name, message, user ID) via a form.
+- Sends the input to a Next.js API route (`/api`).
+- The API processes the data and returns:
+  - The original name, message, and user ID.
+  - The current date/time.
+- The processed data is displayed back to the user after submission.
+- The API also forwards the raw data to a [webhook.site](https://webhook.site/) endpoint for demonstration.
+
+## Folder Structure
+
+```
+src/app/
+  ├── api/
+  │   └── route.ts      # API route for processing and forwarding data
+  ├── dashboard/
+  │   └── page.tsx      # Dashboard page with the form and result display
+  ├── globals.css       # Global styles (Tailwind CSS)
+  ├── layout.tsx        # Root layout
+  └── page.tsx          # Home page with link to dashboard
+```
+
+## How It Works
+
+1. **User visits `/dashboard`** and fills out the form.
+2. **On submit**, the form data is sent to `/api` via a POST request.
+3. **The API route**:
+    - Reads the JSON body.
+    - Adds the current date/time.
+    - Forwards the original data to a webhook endpoint.
+    - Returns the processed data (name, message, userId, time) as JSON.
+4. **The dashboard page** receives the response and displays the processed data.
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Open your browser:**  
+   Visit [http://localhost:3000](http://localhost:3000) and click "Open Dashboard" to try the demo.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Webhook Endpoint:**  
+  The webhook URL in `src/app/api/route.ts` can be changed to any endpoint you want to test with.
 
-## Learn More
+- **Styling:**  
+  Uses Tailwind CSS for quick and easy styling. You can adjust styles in `globals.css` or directly in the components.
 
-To learn more about Next.js, take a look at the following resources:
+## Example
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Go to `/dashboard`.
+2. Enter a name, message, and user ID.
+3. Submit the form.
+4. See your input and the generated date/time displayed below the form.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**This project is for demonstration and learning purposes. It is not intended for production use.**

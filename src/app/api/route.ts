@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     };
 
     const endpoint =
-      "https://webhook.site/61c028e5-3549-47d2-af27-286582d625e5";
+      "https://webhook.site/7a8221df-5bf0-4712-84c5-f38b4eb6da91";
     await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
